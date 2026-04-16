@@ -9,6 +9,7 @@ function App() {
   const accountName = "Oliver's Bank Account";
   const subtitle = "Welcome to your bank account, Oliver";
   const [balance, setBalance] = useState(100);
+  const [showMessage, setShowMessage] = useState(false);
 
   function depositMoney(amount) {
     // setBalance(balance + 10);
@@ -20,13 +21,18 @@ function App() {
     setBalance((prevBalance) => prevBalance - amount);
   }
 
+  function toggleMessage() {
+    setShowMessage((prevShowMessage) => !prevShowMessage);
+  }
+
   return (
     <>
       <Header accountName={accountName} subtitle={subtitle} />
-      <AccountSummary balance={balance} />
+      <AccountSummary balance={balance} showMessage={showMessage} />
       <AccountControls
         depositMoney={depositMoney}
         withdrayMoney={withdrwayMoney}
+        toggleMessage={toggleMessage}
       />
     </>
   );
